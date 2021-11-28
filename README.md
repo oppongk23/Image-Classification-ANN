@@ -47,6 +47,10 @@ def grayscale(data, dtype='float32'):
 X_train_gray = grayscale(x_train)
 X_test_gray = grayscale(x_test)
 
+```
+
+After plotting, we have the image below
+```
 # Plotting the first 10 images again to ensure the mages are in grayscale
 display_images = X_train_gray.reshape(-1, 32,32)
 fig, axes = plt.subplots(1, 10, figsize = (30, 10))
@@ -54,6 +58,47 @@ for img, ax in zip(display_images[:10], axes):
   ax.imshow(img, cmap=plt.get_cmap('gray'))
 plt.show()
 ```
+![Grayscale Images](https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/cifar10_gray.png "Grayscale Images")
 
-This results in the image below
-![grayscaleimages]("a title")
+
+#### Building the first model
+We can then construct an ANN with an input layer, 8 hidden layers and an output layer. Each of the 8 hidden layers will have 512 units (perceptrons) with the ReLU activation funciton. ReLU is a non-linear function that takes the maximum argument between a value passed to it and 0. 
+The final layer will use a softmax function to output a series of probabilities relative to each class. The class with the highest probability is chosen as the class of the input image.
+
+The training and validation sets will be split in an 80:20 ratio.
+
+Then we can go ahead and train our model
+
+```
+# Creating the model with 8 hidden layers aside the input and output layers
+model = keras.Sequential([keras.layers.Flatten(input_shape = (32, 32)), 
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(512, activation="relu"), 
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(10, activation= "softmax")])
+                          
+# Compiling the model with the adam optimizer, cross entropy loss, and accuracy as the metric
+model.compile(optimizer="adam", loss = "sparse_categorical_crossentropy", metrics=["accuracy"])
+
+# Training the model
+training_summary = model.fit(X_train_gray, y_train, epochs=20, batch_size=128, validation_split=0.2)
+```
+
+
+#### Analysing the results
+We plot the training and validation losses and accuracies, to see how the model performs on both seen and unseen data.
+Below is the plot of the training and validation losses.
+
+
+![Training and Validation Losses](https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/model1loss.png "Grayscale Images")
+
+Also, we can take a look at the training and validation accuracies.
+
+![Training and Validation Losses](https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/model1acc.png "Grayscale Images")
+
+
