@@ -95,11 +95,11 @@ We plot the training and validation losses and accuracies, to see how the model 
 Below is the plot of the training and validation losses.
 
 <!-- <img src="https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/model1loss.jpg" width="400" height="300" /> -->
-![Training and Validation Losses](https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/model1loss.jpg "Training and Validation Losses")
+![Training and Validation Losses](Images/model1loss.jpg "Training and Validation Losses")
 
 Also, we can take a look at the training and validation accuracies.
 <!-- 
 <img src="https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/model1acc.jpg" width="400" height="300" /> -->
-![Training and Validation Losses](https://github.com/oppongk23/Image-Classification-ANN/blob/main/Images/model1acc.jpg "Training and Validation Accuracies")
+![Training and Validation Losses](Images/model1acc.jpg "Training and Validation Accuracies")
 
 
