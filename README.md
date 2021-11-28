@@ -213,6 +213,6 @@ With the Dropout layer included, the training loss increases to 1.78 and the val
 
 Finally, in this project we tried to use Artificial Neural Networks to implement an image classification task. We see how the model overfits to the training set. We tried to reduce the overfitting and to make sure the model maintains similar levels of performances with both training and validation sets. We looked at capacity reduction, regularization, and the use of dropout layers. There are other ways to improve generalization, such as BatchNormalization. We will take a look at that when we talk about CNNs. 
 
-If you have any questions you can hit me up through [Email](mailto:coboakyemensah@gmail.com), [Twitter](https://twitter.com/__oppong), and [LinkedIn](https://www.linkedin.com/in/clifford-boakye-mensah-031aa8142/).
+If you have any questions you can hit me up through [Email](mailto:coboakyemensah@gmail.com), [Twitter](https://twitter.com/__oppong), or [LinkedIn](https://www.linkedin.com/in/clifford-boakye-mensah-031aa8142/).
 
 Enjoy!!
