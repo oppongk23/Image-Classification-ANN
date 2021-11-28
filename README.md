@@ -95,13 +95,50 @@ We plot the training and validation losses and accuracies, to see how the model 
 Below is the plot of the training and validation losses.
 
 <img src="Images/model1loss.jpg" width="400" height="300" />
-<!-- ![Training and Validation Losses](Images/model1loss.jpg "Training and Validation Losses") -->
 
 
 
 Also, we can take a look at the training and validation accuracies.
 <img src="Images/model1acc.jpg" width="400" height="300" /> 
 
-<!-- ![Training and Validation Losses](Images/model1acc.jpg "Training and Validation Accuracies") -->
+
+We can note a few things from both plots. From the first plot, it is apparent that the training loss kept reducing with each epoch. At the first epoch, the training loss was around 2.1 and the validation loss was around 2.0. After the 7th epoch, the training loss kept reducing but the validation loss went up till it descended to a plateau after the 10th epoch. At the 20th epoch, the validation loss was about 1.71 and the training loss was 1.39. 
+
+From the second plot, the training accuracy is on a fairly straightforward trajectory. It increases from around 21% and it is around *50.35%* by the 20th epoch. The validation accuracy on the other hand starts to increase steadily till it plateaus at about *40.85%* which indicates a difference of about 10% between both accuracies. 
+
+The huge difference between the accuracies and the loss values show that the model does not generalize very well and that translates to a typical case of an **_overfitted_** model.
+
+When the model is ran on the test set, the accuracy is around *40.96%*. 
 
 
+
+#### Improving the model performance
+Overfitting usually means that the model in question has learnt higher level peculiarities about the training data that aren't exactly necessary. One way of dealing with overfitting is to **_reducing the complexity_** of the model. This way you reduce the _capacity_ of the model and hence, its ability to learn all the overly complex features from the training data.
+
+We can construct a simpler model. This model will have 4 hidden layers instead of 8 with 512, 256, 64, and 32 units respectively.
+
+```
+second_model = keras.Sequential([keras.layers.Flatten(input_shape = (32, 32)), 
+                          keras.layers.Dense(512, activation="relu"),
+                          keras.layers.Dense(256, activation="relu"),
+                          keras.layers.Dense(64, activation="relu"), 
+                          keras.layers.Dense(32, activation="relu"),
+                          keras.layers.Dense(10, activation= "softmax")])
+                   
+# Compiling the model with the adam optimizer, cross entropy loss, and accuracy as the metric
+second_model.compile(optimizer="adam", loss = "sparse_categorical_crossentropy", metrics=["accuracy"])
+
+# Training the model
+second_training_summary = second_model.fit(X_train_gray, y_train, epochs=20, batch_size=128, validation_split=0.2)
+```
+
+#### Results
+We can look at the results below.
+Below is the plot of the training and validation losses.
+
+<img src="Images/model2loss.jpg" width="400" height="300" />
+
+
+
+Also, we can take a look at the training and validation accuracies.
+<img src="Images/model2acc.jpg" width="400" height="300" /> 
