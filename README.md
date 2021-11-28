@@ -172,3 +172,35 @@ We can look at how the model reacts to the regularization implemented.
 
 We can observe the training and validation accuracies.
 <img src="Images/model3acc.jpg" width="400" height="300" /> 
+
+Now by eye-balling the graphs, we can see that the model's performance metrics on both the training and validation datasets are quite similar. The training accuracy is about *42.22%* and the validation accuracy is about *40.15%* at the 20th epoch. As mentioned earlier we can observe that the gap between the training accuracy and validation accuracy has been reduced to just *2.07%*. The gap between the losses also reduces with the training loss being around 1.72 and the validation loss being around 1.77. 
+This, along with the accuracies simply means that the model’s ability to generalize has improved significantly.
+
+
+#### The Final Model
+In this final model, we add a Dropout Layer to the previous model. Dropout Layers work by terminating some neurons. This way the model learns while being 'handicapped' and this helps to improve the model's generalization performance. 
+This is implemented as shown below.
+```
+# Creating the model with 8 hidden layers aside the input and output layers
+reg_drop_model = keras.Sequential([keras.layers.Flatten(input_shape = (32, 32)), 
+                          keras.layers.Dense(512, activation="relu", kernel_regularizer= "l2"),
+                          keras.layers.Dense(256, activation="relu", kernel_regularizer= "l2"),
+                          keras.layers.Dense(64, activation="relu", kernel_regularizer= "l2"), 
+                          keras.layers.Dense(32, activation="relu", kernel_regularizer= "l2"),
+                          keras.layers.Dropout(0.2, noise_shape=None, seed=None),
+                          keras.layers.Dense(10, activation= "softmax")])
+                          
+# Compiling the model with the adam optimizer, cross entropy loss, and accuracy as the metric
+reg_drop_model.compile(optimizer="adam", loss = "sparse_categorical_crossentropy", metrics=["accuracy"])
+
+# Training the model
+reg_drop_training_summary = reg_drop_model.fit(X_train_gray, y_train, epochs=20, batch_size=128, validation_split=0.2)
+```
+The performance is summarized in the graphs below.
+
+
+<img src="Images/model4loss.jpg" width="400" height="300" />
+
+
+The accuracies are also shown below.
+<img src="Images/model4acc.jpg" width="400" height="300" /> 
