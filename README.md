@@ -1,4 +1,4 @@
-In this project, we will try to perform an Image Classification task using an _rtificial Neural Network_. We will try to investigate phenomena such as _underfitting_ and _overfitting_, and will come up with some solutions to these problems. The aim of this project isn't necessarily to obtain the highest accuracy, but make sure the model maintains similar levels of performances with both training and unseen data. We use Tensorflow in this project.
+In this project, we will try to perform an Image Classification task using an _Artificial Neural Network_. We will try to investigate phenomena such as _underfitting_ and _overfitting_, and will come up with some solutions to these problems. The aim of this project isn't necessarily to obtain the highest accuracy, but make sure the model maintains similar levels of performances with both training and unseen data. We use Tensorflow in this project.
 
 You can continue with this post or jump right to the notebook right [here](https://github.com/oppongk23/Image-Classification-ANN/blob/main/ANN_Assignment.ipynb). 
 
