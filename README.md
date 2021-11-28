@@ -145,3 +145,30 @@ Also, we can take a look at the training and validation accuracies.
 
 We have the training accuracy rising steadily in this simulation till it reaches 48% while the validation accuracy plateaus to a value of 40.96%. The difference between the validation and the training accuracy reduces to about 7% from 10% in the first model. The training loss descends to a value of 1.4585 while the validation loss is 1.6585. In this case, the training loss increases slightly from the value of the earlier model but the validation loss decreases from a value of 1.71 in the first model to a value of 1.43 in this second model which indicates an approximately 3% decrease in value. The decrease in the gap between the validation loss and the training loss indicates that the model, as a result of the reduction in complexity, has reduced overfitting. 
 
+
+#### Adding Weight Decay
+Another method of improving the generalization performance of a model is by adding weight decay. This way we are able to penalize our model when it becomes overly complex. Weight decay is added to the model as shown below:
+
+```
+regularized_model = keras.Sequential([keras.layers.Flatten(input_shape = (32, 32)), 
+                          keras.layers.Dense(512, activation="relu", kernel_regularizer= regularizers.l2(0.0008)),
+                          keras.layers.Dense(256, activation="relu", kernel_regularizer= regularizers.l2(0.0008)),
+                          keras.layers.Dense(64, activation="relu", kernel_regularizer= regularizers.l2(0.0008)), 
+                          keras.layers.Dense(32, activation="relu", kernel_regularizer= regularizers.l2(0.0008)),
+                          keras.layers.Dense(10, activation= "softmax")])
+ 
+# Compiling the model with the adam optimizer, cross entropy loss, and accuracy as the metric
+regularized_model.compile(optimizer="adam", loss = "sparse_categorical_crossentropy", metrics=["accuracy"])
+
+# Training the model
+regularized_training_summary = regularized_model.fit(X_train_gray, y_train, epochs=20, batch_size=128, validation_split=0.2)
+```
+
+We can look at how the model reacts to the regularization implemented.
+
+<img src="Images/model3loss.jpg" width="400" height="300" />
+
+
+
+We can observe the training and validation accuracies.
+<img src="Images/model3acc.jpg" width="400" height="300" /> 
